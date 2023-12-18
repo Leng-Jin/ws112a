@@ -88,7 +88,7 @@ async function login(ctx) {
   const body = ctx.request.body()
   if (body.type === "form") {
     var user = await parseFormBody(body)
-    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`) // userMap[user.username]
+    var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`) 
     var dbUser = dbUsers[0]
     if (dbUser.password === user.password) {
       ctx.state.session.set('user', user)
