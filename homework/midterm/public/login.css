@@ -5,6 +5,8 @@ body {
     font-family: Tahoma;
     font-size: 16px;
     position: relative;
+    background: linear-gradient(to left,	#F3F3FA, #EBD3E8, #F2E6E6);
+    color: white;
 }
 body::before {
     content: "";

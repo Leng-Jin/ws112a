@@ -1,7 +1,7 @@
 import { Application, Router, send } from "https://deno.land/x/oak/mod.ts";
 import { DB } from "https://deno.land/x/sqlite/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
-import { performMusicSearch } from './public/performMusicSearch.js';
+import { WebSocketServer } from "https://deno.land/x/websocket@v0.1.4/mod.ts";
 
 const app = new Application();
 
@@ -22,7 +22,7 @@ const account = new Map();
 const router = new Router();
 router
   .get("/", (ctx) => {
-    ctx.response.redirect('http://127.0.0.1:8001/public/index.html');
+    ctx.response.redirect('http://127.0.0.1:8001/public/login.html');
   })
   .get("/account", (ctx) => {
     ctx.response.body = Array.from(account.values()); 
@@ -42,7 +42,7 @@ router
       console.log(`name=${email} password=${password}`);
       if (account.get(email) && password === account.get(email).password) {
         ctx.response.type = 'text/html';
-        ctx.response.body = `<p>登入成功</p><p><a href="/public/login.html">回首頁</a></p>`
+        ctx.response.body = `<p>登入成功</p><p><a href="/public/index.html">回首頁</a></p>`
       } else {
         ctx.response.type = 'text/html';
         ctx.response.body = `<p>登入失敗，請檢查帳號密碼是否有錯！</p><p><a href="/public/login.html">請重新登入</a></p>`;
@@ -68,7 +68,7 @@ router
       } else {
         account.set(email, { email, password });
         ctx.response.type = 'text/html';
-        ctx.response.body = `<p>註冊成功</p><p><a href="/public/login.html">回首頁</a></p>`
+        ctx.response.body = `<p>註冊成功</p><p><a href="/public/login.html">回登入頁面</a></p>`
         
       }
     }

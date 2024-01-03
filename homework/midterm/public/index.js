@@ -1,13 +1,12 @@
-const pages = {
-  '#home':`<h1>Music Search Engine</h1>`,
-  'login.html':`<h1>登入</h1>`,
-  'register.html':`<h1>註冊</h1>`
-};
-
 const apiKey = 'AIzaSyAyb5i7U7nQeezKM8WPbw6bMf0OMML7vPg';
 
-
+//搜尋音樂函數
 function searchMusic() {
+  //獲取搜尋結果
+  const searchResultsContainer = document.getElementById('searchResults');
+  searchResultsContainer.innerHTML = '';
+
+  //音樂搜尋輸入框和搜尋詞
   const musicSearchInput = document.getElementById('musicSearch');
   const searchTerm = musicSearchInput.value;
 
@@ -15,15 +14,8 @@ function searchMusic() {
     alert("請輸入搜索詞！");
     return;
   }
-  performMusicSearch(searchTerm)
-    .then(searchResults => {
-      handleSearchResults(searchResults);
-    })
-    .catch(error => {
-      handleOtherError(error);
-    });
-}
 
+//執行音樂搜尋
 async function performMusicSearch(searchTerm) {
   const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${encodeURIComponent(searchTerm)}&type=video&videoCategoryId=10&key=${apiKey}`;
 
@@ -36,11 +28,11 @@ async function performMusicSearch(searchTerm) {
       throw new Error('從YouTube API獲取數據失敗');
     }
 
+
     const data = await response.json();
     const videos = data.items.map(item => ({
       title: item.snippet.title,
       videoId: item.id.videoId,
-      // 添加其他所需的信息...
     }));
 
     return videos;
@@ -49,6 +41,19 @@ async function performMusicSearch(searchTerm) {
   }
 }
 
+  //執行音樂搜尋並處理結果
+  performMusicSearch(searchTerm)
+    .then(searchResults => {
+      handleSearchResults(searchResults);
+    })
+    .catch(error => {
+      handleOtherError(error);
+    });
+}
+
+
+
+//處理音樂搜尋結果
 function handleSearchResults(results) {
   const searchResultsContainer = document.getElementById('searchResults');
   searchResultsContainer.innerHTML = '';
@@ -67,6 +72,7 @@ function handleSearchResults(results) {
       searchResultsContainer.appendChild(resultItem);
     });
 
+    //顯示第一個搜尋結果的標題和崁入視頻
     const firstResult = results[0];
     const firstVideoItem = document.createElement('div');
     firstVideoItem.innerHTML = `
@@ -82,6 +88,7 @@ function handleSearchResults(results) {
 }
 
 
+//沒有搜尋到結果的情況
 function handleNoResults() {
   const searchResultsContainer = document.getElementById('searchResults');
   searchResultsContainer.innerHTML = '<p>未找到相應的視頻。</p>';
@@ -91,11 +98,13 @@ function handleOtherError(error) {
   console.error('Error performing music search:', error);
 }
 
+//顯示加載指示器
 function showLoadingIndicator() {
   const loadingSpinner = document.getElementById('loadingSpinner');
   loadingSpinner.style.display = 'block';
 }
 
+// 隱藏加載指示器
 function hideLoadingIndicator() {
   const loadingSpinner = document.getElementById('loadingSpinner');
   loadingSpinner.style.display = 'none';

@@ -1,29 +1,21 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Dynamic Content Example</title>
     <link rel="stylesheet" type="text/css" href="index.css"/>
   </head>
   <body>
-    <div id="contain">
-      <div class="navbar">
-        <a href="#home">首頁</a>
-        <a href="login.html">登入</a>
-        <a href="register.html">註冊</a>
+    <h1>Music Search Engine</h1>
+    <div class="search-container">
+      <div class="input-container">
+        <label for="musicSearch">輸入歌曲或歌手名稱</label>
+        <input type="text" id="musicSearch" />
       </div>
-      <h1>Music Search Engine</h1>
-      <div class="search-container">
-        <div class="input-container">
-          <label for="musicSearch">輸入歌曲或歌手名稱</label>
-          <input type="text" id="musicSearch">
-        </div>
-        <button id="searchButton">搜尋</button>
-      </div>
-      <div id="contentContainer">
-        <div id="searchResults"></div>
-        <div id="videoContainer"></div>
-      </div>
+      <button id="searchButton">搜尋</button>
+    </div>
+    <div id="contentContainer">
+      <div id="searchResults"></div>
     </div>
     <script src="index.js" type="module"></script>
-
   </body>
 </html>
