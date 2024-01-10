@@ -1,10 +1,3 @@
-# 程式執行方式
+# 期中作業完成方式說明
 
-## 設置API KEY
-從[GoogleCloud](https://console.cloud.google.com/apis/library/youtube.googleapis.com?hl=zh-MO&project=my-web-409319 "游標顯示")取得API KEY
-
-將取得的API KEY貼到index.js的第一行程式碼中，即可執行
-```
-const apiKey = '你的api key';
-```
-
+只有index.js裡面的音樂搜尋部分是詢問ChatGPT，其餘是原創，自己製作。
