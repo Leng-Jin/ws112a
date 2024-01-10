@@ -3,7 +3,7 @@ import { WebSocketServer } from "https://deno.land/x/websocket/mod.ts";
 
 const app = new Application()
 
-const posts = [{id: 0, title: 'aaa', body: 'aaaaa'}, {id: 1, title: 'bbb', body: 'bbbbb'}]
+const posts = [{id: 0, title: 'Chen', body: '0912345678'}, {id: 1, title: 'BB', body: '0987456123'}]
 
 const wss = new WebSocketServer(8080);
 

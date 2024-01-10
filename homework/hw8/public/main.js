@@ -62,29 +62,29 @@ R.list = function (posts) {
     list.push(`
     <li>
       <h2>${post.title}</h2>
-      <p><a id="show${post.id}" href="#show/${post.id}">Read post</a></p>
+      <p><a id="show${post.id}" href="#show/${post.id}">聯絡人資料</a></p>
     </li>
     `)
   }
   let content = `
-  <h1>Posts</h1>
-  <p>You have <strong>${posts.length}</strong> posts!</p>
-  <p><a id="createPost" href="#new">Create a Post</a></p>
+  <h1>通訊錄</h1>
+  <p>你有 <strong>${posts.length}</strong> 個聯絡人!</p>
+  <p><a id="createPost" href="#new">新增聯絡人</a></p>
   <ul id="posts">
     ${list.join('\n')}
   </ul>
   `
-  return R.layout('Posts', content)
+  return R.layout('通訊錄', content)
 }
 
 R.new = function () {
-  return R.layout('New Post', `
-  <h1>New Post</h1>
-  <p>Create a new post.</p>
+  return R.layout('新增聯絡人', `
+  <h1>新增聯絡人</h1>
+  <p>填寫聯絡人</p>
   <form>
-    <p><input id="title" type="text" placeholder="Title" name="title"></p>
-    <p><textarea id="body" placeholder="Contents" name="body"></textarea></p>
-    <p><input id="savePost" type="button" onclick="R.savePost()" value="Create"></p>
+    <p><input id="title" type="text" placeholder="姓名" name="title"></p>
+    <p><textarea id="body" placeholder="電話號碼" name="body"></textarea></p>
+    <p><input id="savePost" type="button" onclick="R.savePost()" value="新增"></p>
   </form>
   `)
 }
